@@ -31,7 +31,7 @@ public class UserService {
 		User user = new User();
 		user.setEmail(email);
 		user.setFecha_creacion(LocalDateTime.now());
-		user.setNombre(nombre);
+		user.setName(nombre);
 		user.setPassword(password);
 
 		return userRepository.save(user);

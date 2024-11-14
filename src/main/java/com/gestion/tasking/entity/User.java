@@ -25,8 +25,8 @@ public class User {
 		@Column(name = "id_usuario") 
 		private  long id_usuario;
 		
-		
-		private String nombre;
+		@Column(name = "nombre")
+		private String name;
 		private String email;
 		private String password;
 		private LocalDateTime fecha_creacion;

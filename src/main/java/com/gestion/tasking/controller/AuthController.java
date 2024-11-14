@@ -31,20 +31,20 @@ public class AuthController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<Map<String, String>> register(@RequestBody User user){
+	public ResponseEntity<AuthResponse> register(@RequestBody User user){
 		Map<String, String> response = new HashMap<>();
 		
 		try {
 			
-			userService.registerUser(user.getNombre(), user.getEmail(), user.getPassword());
+			userService.registerUser(user.getName(), user.getEmail(), user.getPassword());
 			
 			response.put("mensaje", "Usuario Registrado Correctamente ");
-			 return ResponseEntity.ok(response);
+			return ResponseEntity.ok(new AuthResponse(0, "Usuario Creado Existosamente"));
 			
 		} catch (Exception e) {
 		
-			response.put("mensaje", "ERROR: " +e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			  return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	            		.body(new AuthResponse(1, "Error: Usuario ya existe o es invalido"));
 		}
 		
 	}
